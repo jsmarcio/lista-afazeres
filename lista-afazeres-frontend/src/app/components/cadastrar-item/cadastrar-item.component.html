@@ -1,3 +1,52 @@
-<p>
-  cadastrar-item works!
-</p>
+<p-card title="Cadastro de Item" class="flex align-items-center justify-content-center">
+  <form [formGroup]="formularioDeItem" (ngSubmit)="enviarDados()">
+    <div class="p-inputtext-lg">
+      <label for="nome">Nome: </label>
+      <input pInputText type="text" formControlName="nome">
+      <div *ngIf="!nome.pristine && nome.errors">
+        <p *ngIf="nome.errors.required">
+          Nome é obrigatório.
+        </p>
+        <p *ngIf="nome.errors.minlength">
+          Nome deve ter no mínimo 3 caracters.
+        </p>
+        <p *ngIf="nome.errors.maxlength">
+          Nome deve ter no máximo 100 caracters.
+        </p>
+      </div>
+    </div>
+
+    <div class="p-inputtext-lg">
+      <label for="data">Data de criação: </label>
+      <input pInputText type="text" formControlName="data">
+      <div class *ngIf="!data.pristine && data.errors">
+        <p *ngIf="data.errors.required">
+          Data é obrigatória.
+        </p>
+      </div>
+    </div>
+
+    <div class="p-inputtext-lg">
+      <label for="descricao">Descrição: </label>
+      <input pInputText type="text" formControlName="descricao">
+      <div *ngIf="!descricao.pristine && descricao.errors">
+        <p *ngIf="descricao.errors.required">
+          Descrição é obrigatória.
+        </p>
+      </div>
+    </div>
+
+    <br>
+    <div class="p-col-12">
+      <div class="p-col-6">
+        <p-button pButton (click)="voltar()" styleClass="p-button-danger">Voltar</p-button>
+      </div>
+      <div class="p-col-6">
+        <p-button pButton [disabled]="formularioDeItem.invalid">Enviar dados</p-button>
+      </div>
+    </div>
+    <br>
+    <br>
+
+  </form>
+</p-card>
