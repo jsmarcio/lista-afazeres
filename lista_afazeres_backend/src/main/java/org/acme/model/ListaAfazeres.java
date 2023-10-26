@@ -1,24 +1,18 @@
 package org.acme.model;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 
-@Entity
+@Entity(name = "lista_afazeres")
 public class ListaAfazeres extends PanacheEntity {
 
-    private Integer id;
+    @Column(name = "nome", nullable = false)
     private String nome;
+    @Column(name = "data", nullable = false)
     private String data;
+    @Column(name = "descricao", nullable = false)
     private String descricao;
-
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getNome() {
         return nome;
@@ -45,4 +39,12 @@ public class ListaAfazeres extends PanacheEntity {
     }
 
 
+    @Override
+    public String toString() {
+        return "ListaAfazeres{" +
+                "nome='" + nome + '\'' +
+                ", data='" + data + '\'' +
+                ", descricao='" + descricao + '\'' +
+                '}';
+    }
 }

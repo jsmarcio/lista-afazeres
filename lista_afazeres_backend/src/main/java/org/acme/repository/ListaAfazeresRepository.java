@@ -6,6 +6,10 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import org.acme.model.ListaAfazeres;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 @ApplicationScoped
 public class ListaAfazeresRepository implements PanacheRepository<ListaAfazeres> {
 
@@ -13,8 +17,11 @@ public class ListaAfazeresRepository implements PanacheRepository<ListaAfazeres>
     ListaAfazeresRepository listaAfazeresRepository;
 
     @Transactional
-    public void create(ListaAfazeres listaAfazeres) {
+    public List<ListaAfazeres> create(ListaAfazeres listaAfazeres) {
         listaAfazeres.persist();
+        List<ListaAfazeres> listaItens = new ArrayList<>();
+        listaItens.add(listaAfazeres);
+        return listaItens;
     }
 
 }
